@@ -63,9 +63,9 @@ func (a *OpenapiAgentRunApplication) OpenapiAgentRun(ctx context.Context, sseSen
 		return caErr
 	}
 
-	if creatorID != agentInfo.CreatorID {
-		return errorx.New(errno.ErrConversationPermissionCode, errorx.KV("msg", "agent not match"))
-	}
+	// if creatorID != agentInfo.CreatorID {
+	// 	return errorx.New(errno.ErrConversationPermissionCode, errorx.KV("msg", "agent not match"))
+	// }
 
 	conversationData, ccErr := a.checkConversation(ctx, ar, creatorID, connectorID)
 	if ccErr != nil {
