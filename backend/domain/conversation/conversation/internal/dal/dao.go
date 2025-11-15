@@ -149,7 +149,10 @@ func (dao *ConversationDAO) List(ctx context.Context, listMeta *entity.ListMeta)
 		Where(dao.query.Conversation.AgentID.Eq(listMeta.AgentID)).
 		Where(dao.query.Conversation.Scene.Eq(int32(listMeta.Scene))).
 		Where(dao.query.Conversation.ConnectorID.Eq(listMeta.ConnectorID)).
-		Where(dao.query.Conversation.Status.Eq(int32(conversation.ConversationStatusNormal)))
+		Where(dao.query.Conversation.Status.Eq(int32(conversation.ConversationStatusNormal))).
+		Where(dao.query.Conversation.Name.IsNotNull()).
+		Where(dao.query.Conversation.Name.Neq("")).
+		Where(dao.query.Conversation.Name.Neq("EventTrigger"))
 
 	if listMeta.UserID != nil {
 		do = do.Where(dao.query.Conversation.UserID.Eq(ptr.From(listMeta.UserID)))
